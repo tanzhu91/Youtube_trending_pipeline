@@ -58,7 +58,7 @@ select
 
     default_language,
     tags,
-    
+
     duration_seconds,
     duration_seconds / 60.0 AS duration_minutes,
     duration_seconds / 3600.0 AS duration_hours,
@@ -67,5 +67,8 @@ select
     like_count,
     comment_count
 
+from base
 
 )
+
+select * from transformed
