@@ -1,13 +1,12 @@
 version: 2
 
-
-
 sources:
-  - name: youtube_source    
-    database: upheld-momentum-463013-v7
-    schema: dbt_tdereli     
+  - name: youtube
+    database: bigquery-public-data
+    schema: youtube
     tables:
-      - name: youtube_dataset_eu
-        description: "Raw YouTube trending videos data imported from API"
+      - name: trending_videos
+        description: "Public dataset of YouTube trending videos"
+
 
   

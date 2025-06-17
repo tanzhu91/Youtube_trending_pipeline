@@ -22,5 +22,3 @@ models:
     marts:
       core:
         +materialized: table
-      reporting:
-        +materialized: table
