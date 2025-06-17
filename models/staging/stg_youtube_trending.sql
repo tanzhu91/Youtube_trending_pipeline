@@ -1,6 +1,4 @@
-create or replace view `upheld-momentum-463013-v7`.`dbt_tdereli`.`stg_youtube_trending`
-OPTIONS()
-as 
+{{ config(materialized='view') }}
 
 with base as (
     select
@@ -16,7 +14,7 @@ with base as (
         view_count,
         like_count,
         comment_count
-    from `upheld-momentum-463013-v7`.`dbt_tdereli`.`youtube_trending_videos`
+    from {{ source('youtube_source', 'youtube_trending_videos') }}
 ),
 
 transformed as (
@@ -65,6 +63,5 @@ transformed as (
         like_count,
         comment_count
 )
-
 
 select * from transformed
