@@ -1,9 +1,5 @@
-  create or replace view `upheld-momentum-463013-v7`.`dbt_tdereli`.`stg_youtube_trending`
-  OPTIONS()
-  as 
-
 with source_data as (
-    select * from `upheld-momentum-463013-v7.youtube_dataset.trending_videos`
+    select * from `upheld-momentum-463013-v7.dbt_tdereli.trending_videos`
 )
 
 select
