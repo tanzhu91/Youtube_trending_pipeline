@@ -1,3 +1,5 @@
+{{ config(materialized='view') }}
+
 select
     video_id,
     title,
