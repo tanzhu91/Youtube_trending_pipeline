@@ -1,5 +1,11 @@
 {{ config(materialized='view') }}
 
+
+create or replace view `upheld-momentum-463013-v7`.`dbt_tdereli`.`stg_youtube_trending`
+OPTIONS()
+as 
+
+
 with base as (
     
 select
