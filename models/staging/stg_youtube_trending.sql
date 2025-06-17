@@ -50,8 +50,8 @@ transformed as (
         default_language,
         tags,
         duration_seconds,
-        duration_seconds / 60.0 AS duration_minutes,
-        duration_seconds / 3600.0 AS duration_hours,
+        ROUND(duration_seconds / 60.0 ,3) AS duration_minutes,
+        ROUND(duration_seconds / 3600.0 ,3) AS duration_hours,
         view_count,
         like_count,
         comment_count
