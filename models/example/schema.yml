@@ -1,21 +1,25 @@
 
+# models/staging/schema.yml
+
 version: 2
 
 models:
-    - name: my_first_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
-
-    - name: my_second_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+  - name: stg_youtube_trending
+    description: "Staging model that cleans raw YouTube trending data from BigQuery"
+    columns:
+      - name: video_id
+        description: "Unique identifier for the video"
+      - name: title
+        description: "Title of the video"
+      - name: channel_title
+        description: "Name of the channel"
+      - name: view_count
+        description: "Number of views"
+      - name: like_count
+        description: "Number of likes"
+      - name: comment_count
+        description: "Number of comments"
+      - name: published_at
+        description: "Timestamp when the video was published"
+      - name: duration_seconds
+        description: "Duration of the video in seconds"
