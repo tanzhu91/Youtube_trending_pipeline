@@ -20,3 +20,16 @@ models:
         description: "When the video was published"
       - name: duration_seconds
         description: "Length of the video in seconds"
+
+
+
+
+sources:
+  - name: youtube_source    
+    database: upheld-momentum-463013-v7
+    schema: dbt_tdereli     
+    tables:
+      - name: youtube_dataset 
+        description: "Raw YouTube trending videos data imported from API"
+
+  
