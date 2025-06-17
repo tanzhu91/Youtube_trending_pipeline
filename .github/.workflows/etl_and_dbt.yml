@@ -1,0 +1,45 @@
+name: Run ETL + dbt
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # runs every day at 6am UTC
+  workflow_dispatch:      # allows manual trigger from GitHub UI
+
+jobs:
+  run_pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run ETL script
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GCP_CREDENTIALS }}
+        run: |
+          echo "$GOOGLE_APPLICATION_CREDENTIALS_JSON" > key.json
+          export GOOGLE_APPLICATION_CREDENTIALS="key.json"
+          python your_etl_script.py
+
+      - name: Set up dbt
+        uses: dbt-labs/dbt-action@v1
+        with:
+          dbt-version: 1.7.0  # adjust as needed
+
+      - name: Run dbt models
+        env:
+          DBT_GOOGLE_PROJECT: your-gcp-project-id
+          DBT_GOOGLE_KEYFILE_JSON: ${{ secrets.GCP_CREDENTIALS }}
+        run: |
+          dbt deps
+          dbt seed
+          dbt run --select staging
