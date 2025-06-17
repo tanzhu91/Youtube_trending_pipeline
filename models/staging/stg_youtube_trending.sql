@@ -1,5 +1,5 @@
 with source_data as (
-    select * from `upheld-momentum-463013-v7.youtube_dataset.trending_videos`
+    select * from `upheld-momentum-463013-v7.youtube_dataset_eu.trending_videos`
 )
 
 select
