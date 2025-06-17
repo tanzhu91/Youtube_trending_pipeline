@@ -1,6 +1,10 @@
+{{ config(materialized='view') }}
+
+
 with source_data as (
-    select * from `upheld-momentum-463013-v7.dbt_tdereli.trending_videos`
+  select * from {{ source('youtube_trending', 'trending_videos') }}
 )
+
 
 select
     video_id,
