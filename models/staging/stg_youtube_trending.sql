@@ -2,6 +2,7 @@
 
 with base as (
     select
+        load_date,
         video_id,
         title,
         description,
@@ -18,6 +19,11 @@ with base as (
 ),
 transformed as (
     select
+        load_date,
+        EXTRACT(YEAR  FROM load_date) as load_year,
+        EXTRACT(MONTH FROM load_date) as load_month,
+        EXTRACT(DAY   FROM load_date) as load_day,
+        EXTRACT(HOUR  FROM load_date) as load_hour,
         video_id,
         title,
         description,
