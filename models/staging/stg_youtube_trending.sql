@@ -9,4 +9,4 @@ select
     cast(comment_count as int64) as comment_count,
     published_at,
     duration_seconds
-from {{ source('youtube_source', 'youtube_videos_raw') }}
+from {{ source('youtube_source', 'youtube_trending_videos') }}

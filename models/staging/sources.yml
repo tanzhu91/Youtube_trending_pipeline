@@ -5,5 +5,5 @@ sources:
     database: upheld-momentum-463013-v7
     schema: dbt_tdereli
     tables:
-      - name: youtube_videos_raw
+      - name: youtube_trending_videos
         description: "Raw YouTube videos data loaded from Python script"
