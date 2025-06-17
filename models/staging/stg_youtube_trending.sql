@@ -28,7 +28,7 @@ transformed as (
         EXTRACT(DAY   FROM published_at) as published_day,
         EXTRACT(HOUR  FROM published_at) as published_hour,
         category_id,
-        CASE category_id
+        CASE CAST(category_id as INT64)
           WHEN 1 THEN 'Film & Animation'
           WHEN 2 THEN 'Autos & Vehicles'
           WHEN 10 THEN 'Music'
