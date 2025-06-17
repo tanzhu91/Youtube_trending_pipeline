@@ -29,7 +29,7 @@ sources:
     database: upheld-momentum-463013-v7
     schema: dbt_tdereli     
     tables:
-      - name: youtube_dataset 
+      - name: youtube_dataset_eu
         description: "Raw YouTube trending videos data imported from API"
 
   
