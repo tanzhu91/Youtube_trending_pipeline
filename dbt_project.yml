@@ -21,6 +21,6 @@ models:
       +materialized: view
     marts:
       core:
-        +materialized: table
+        +materialized: view
       reporting:
-        +materialized: table
+        +materialized: view
