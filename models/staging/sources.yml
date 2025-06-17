@@ -1,8 +1,9 @@
 version: 2
 
 sources:
-  - name: youtube_trending
-    database: bigquery-public-data
-    schema: youtube_analytics
+  - name: youtube_source
+    database: upheld-momentum-463013-v7
+    schema: dbt_tdereli
     tables:
-      - name: video_basic_audience
+      - name: youtube_videos_raw
+        description: "Raw YouTube videos data loaded from Python script"
