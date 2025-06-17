@@ -17,10 +17,11 @@ clean-targets:
 
 models:
   Youtube_trending_pipeline:
+    +dataset: dbt_tdereli
     staging:
-      +materialized: view
+      +materialized: table
     marts:
       core:
-        +materialized: view
+        +materialized: table
       reporting:
-        +materialized: view
+        +materialized: table
