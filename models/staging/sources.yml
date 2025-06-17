@@ -3,7 +3,6 @@ version: 2
 sources:
   - name: youtube_trending
     database: bigquery-public-data
-    schema: youtube
+    schema: youtube_analytics
     tables:
-      - name: trending_videos
-        description: "Public YouTube trending videos dataset"
+      - name: video_basic_audience
