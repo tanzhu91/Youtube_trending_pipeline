@@ -1,6 +1,4 @@
-# dbt_project.yml
-
-name: youtube_pipeline
+name: Youtube_trending_pipeline
 version: '1.0'
 
 profile: default
@@ -18,7 +16,7 @@ clean-targets:
   - "dbt_modules"
 
 models:
-  youtube_pipeline:
+  Youtube_trending_pipeline:
     staging:
       +materialized: view
     marts:
