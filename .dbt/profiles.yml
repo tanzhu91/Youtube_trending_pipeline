@@ -1,0 +1,11 @@
+default:
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: upheld-momentum-463013-v7
+      dataset: dbt_tdereli
+      keyfile_json: "{{ env_var('DBT_GOOGLE_KEYFILE_JSON') }}"
+      threads: 4
+      timeout_seconds: 300
+  target: dev
