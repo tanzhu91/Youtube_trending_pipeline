@@ -16,7 +16,6 @@ with base as (
         comment_count
     from {{ source('youtube_source', 'youtube_trending_videos') }}
 ),
-
 transformed as (
     select
         video_id,
@@ -24,14 +23,11 @@ transformed as (
         description,
         channel_title,
         published_at,
-
         EXTRACT(YEAR  FROM published_at) as published_year,
         EXTRACT(MONTH FROM published_at) as published_month,
         EXTRACT(DAY   FROM published_at) as published_day,
         EXTRACT(HOUR  FROM published_at) as published_hour,
-
         category_id,
-
         CASE category_id
           WHEN 1 THEN 'Film & Animation'
           WHEN 2 THEN 'Autos & Vehicles'
@@ -51,17 +47,15 @@ transformed as (
           WHEN 29 THEN 'Nonprofits & Activism'
           ELSE 'Unknown'
         END AS category_name,
-
         default_language,
         tags,
-
         duration_seconds,
         duration_seconds / 60.0 AS duration_minutes,
         duration_seconds / 3600.0 AS duration_hours,
-
         view_count,
         like_count,
         comment_count
+    from base
 )
 
 select * from transformed
