@@ -1,12 +1,9 @@
 version: 2
 
 sources:
-  - name: youtube
+  - name: youtube_trending
     database: bigquery-public-data
     schema: youtube
     tables:
       - name: trending_videos
-        description: "Public dataset of YouTube trending videos"
-
-
-  
+        description: "Public YouTube trending videos dataset"
