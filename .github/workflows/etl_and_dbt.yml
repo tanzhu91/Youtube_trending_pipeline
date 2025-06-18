@@ -47,7 +47,7 @@ jobs:
            DBT_GOOGLE_PROJECT: upheld-momentum-463013-v7
            DBT_GOOGLE_KEYFILE_JSON: ${{ secrets.GCP_CREDENTIALS }}
         run: |
-           cd dbt_project
+           cd Youtube_trending_pipeline
            dbt deps --profiles-dir .
            dbt seed --profiles-dir .
            dbt run --select staging --profiles-dir .
