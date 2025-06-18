@@ -29,20 +29,13 @@ jobs:
         run: echo "api_key=${{ secrets.YOUTUBE_API_KEY }}" > .env
 
 
-      - name: Write GCP credentials to file
-        run: |
-          echo "${{ secrets.GCP_CREDENTIALS }}" > key.json
-        shell: bash
-
       - name: Run ETL script
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/key.json
+          GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GCP_CREDENTIALS }}
         run: |
-          python etl.py
-
-      
-      - name: Install dbt
-        run: pip install dbt-bigquery==1.7.0
+          echo "$GOOGLE_APPLICATION_CREDENTIALS_JSON" > key.json
+          export GOOGLE_APPLICATION_CREDENTIALS="key.json"
+          python etl.py 
 
 
       - name: Run dbt models
