@@ -73,9 +73,9 @@ credentials = service_account.Credentials.from_service_account_file(
     r"C:\Users\tanju\Desktop\upheld-momentum-463013-v7-a9926786a277.json"
 )
 
-client = bigquery.Client(credentials=credentials, project='upheld-momentum-463013-v7')
+#lient = bigquery.Client(credentials=credentials, project='upheld-momentum-463013-v7')
 
-
+client = bigquery.Client()
 
 # Set your dataset and table
 dataset_id = 'dbt_tdereli'  # e.g. 'dbt_tdereli'
