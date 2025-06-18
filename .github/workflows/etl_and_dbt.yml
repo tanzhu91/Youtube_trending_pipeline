@@ -34,11 +34,11 @@ jobs:
 
 
 
-      - name: Prepare Google Cloud credentials
+      - name: Decode GCP credentials
         run: |
-          echo '${{ secrets.GCP_CREDENTIALS }}' > key.json
+          echo "${{ secrets.GCP_CREDENTIALS_BASE64 }}" | base64 -d > key.json
           echo "GOOGLE_APPLICATION_CREDENTIALS=$PWD/key.json" >> $GITHUB_ENV
-          echo "DBT_GOOGLE_KEYFILE_JSON=$(echo '${{ secrets.GCP_CREDENTIALS }}' | sed 's/\\n/\\\\n/g')" >> $GITHUB_ENV
+          echo "DBT_GOOGLE_KEYFILE_JSON=$(cat key.json | jq -c .)" >> $GITHUB_ENV
 
       - name: Run ETL script
         run: python etl.py
