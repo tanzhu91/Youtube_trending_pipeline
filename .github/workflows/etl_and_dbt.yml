@@ -34,9 +34,10 @@ jobs:
 
 
 
-      - name: Decode GCP credentials
+      - name: Decode and save GCP credentials
         run: |
-          echo "${{ secrets.GCP_CREDENTIALS_BASE64 }}" | base64 -d > key.json
+          echo "${{ secrets.GCP_CREDENTIALS_BASE64 }}" > key.json
+          cat key.json | jq . # <--- optional: sanity check to fail fast if file is empty or invalid
           echo "GOOGLE_APPLICATION_CREDENTIALS=$PWD/key.json" >> $GITHUB_ENV
           echo "DBT_GOOGLE_KEYFILE_JSON=$(cat key.json | jq -c .)" >> $GITHUB_ENV
 
