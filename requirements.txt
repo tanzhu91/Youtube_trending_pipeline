@@ -4,3 +4,4 @@ isodate
 python-dotenv
 google-cloud-bigquery
 google-auth
+dbt-bigquery==1.7.0
