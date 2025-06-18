@@ -29,27 +29,21 @@ jobs:
         run: echo "api_key=${{ secrets.YOUTUBE_API_KEY }}" > .env
 
 
-
-
-
-
-
-      - name: Decode and save GCP credentials
-        run: |
-          echo "${{ secrets.GCP_CREDENTIALS_BASE64 }}" > key.json
-          cat key.json | jq . # <--- optional: sanity check to fail fast if file is empty or invalid
-          echo "GOOGLE_APPLICATION_CREDENTIALS=$PWD/key.json" >> $GITHUB_ENV
-          echo "DBT_GOOGLE_KEYFILE_JSON=$(cat key.json | jq -c .)" >> $GITHUB_ENV
-
       - name: Run ETL script
-        run: python etl.py
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GCP_CREDENTIALS }}
+        run: |
+          echo "$GOOGLE_APPLICATION_CREDENTIALS_JSON" > key.json
+          export GOOGLE_APPLICATION_CREDENTIALS="key.json"
+          python etl.py 
 
 
       - name: Run dbt models
         env:
-          DBT_GOOGLE_PROJECT: upheld-momentum-463013-v7
+           DBT_GOOGLE_PROJECT: upheld-momentum-463013-v7
+           DBT_GOOGLE_KEYFILE_JSON: ${{ secrets.GCP_CREDENTIALS }}
         run: |
-          dbt deps --profiles-dir .dbt
-          dbt seed --profiles-dir .dbt
-          dbt run --profiles-dir .dbt --select staging
+           dbt deps --profiles-dir .dbt
+           dbt seed --profiles-dir .dbt
+           dbt run --profiles-dir .dbt --select staging 
 
