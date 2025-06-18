@@ -43,8 +43,8 @@ jobs:
 
 
       - name: Run ETL script
-        #env:
-          #GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GCP_CREDENTIALS }}
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GCP_CREDENTIALS }}
         run: |
           echo "$GOOGLE_APPLICATION_CREDENTIALS_JSON" > key.json
           export GOOGLE_APPLICATION_CREDENTIALS="key.json"
