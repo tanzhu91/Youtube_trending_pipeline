@@ -7,5 +7,5 @@ default:
       dataset: dbt_tdereli
       keyfile_json: "{{ env_var('DBT_GOOGLE_KEYFILE_JSON') }}"
       threads: 4
-      timeout_seconds: 300
+      timeout_seconds: 500
   target: dev
