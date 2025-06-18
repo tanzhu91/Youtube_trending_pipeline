@@ -29,21 +29,16 @@ jobs:
         run: echo "api_key=${{ secrets.YOUTUBE_API_KEY }}" > .env
 
 
-      - name: Create GCP credentials file
+      - name: Write GCP credentials to file
         run: |
-          if echo "${{ secrets.GCP_CREDENTIALS }}" | grep '\\n' > /dev/null; then
-            echo "Detected \\n-escaped JSON. Decoding it..."
-            echo "${{ secrets.GCP_CREDENTIALS }}" | sed 's/\\n/\n/g' > key.json
-          else
-            echo "Detected multiline JSON. Writing directly..."
-            echo "${{ secrets.GCP_CREDENTIALS }}" > key.json
-          fi
-
+          echo "${{ secrets.GCP_CREDENTIALS }}" | jq . > key.json
+        shell: bash
 
       - name: Run ETL script
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/key.json
         run: |
-          export GOOGLE_APPLICATION_CREDENTIALS="key.json"
-          python etl.py 
+          python etl.py
 
       
       - name: Install dbt
