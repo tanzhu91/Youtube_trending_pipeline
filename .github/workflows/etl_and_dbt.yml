@@ -44,9 +44,11 @@ jobs:
 
       - name: Run dbt models
         env:
-          DBT_GOOGLE_PROJECT: upheld-momentum-463013-v7
-          DBT_GOOGLE_KEYFILE_JSON: ${{ secrets.GCP_CREDENTIALS }}
+           DBT_GOOGLE_PROJECT: upheld-momentum-463013-v7
+           DBT_GOOGLE_KEYFILE_JSON: ${{ secrets.GCP_CREDENTIALS }}
         run: |
-          dbt deps
-          dbt seed
-          dbt run --select staging
+           cd dbt_project
+           dbt deps --profiles-dir .
+           dbt seed --profiles-dir .
+           dbt run --select staging --profiles-dir .
+
