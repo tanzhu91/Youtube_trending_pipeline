@@ -31,21 +31,19 @@ jobs:
 
       - name: Run ETL script
         env:
-          GOOGLE_APPLICATION_CREDENTIALS_B64: ${{ secrets.GCP_CREDENTIALS }}
+          GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GCP_CREDENTIALS }}
         run: |
-          echo "$GOOGLE_APPLICATION_CREDENTIALS_B64" | base64 -d > key.json
+          echo "$GOOGLE_APPLICATION_CREDENTIALS_JSON" | sed 's/\\n/\n/g' > key.json
           export GOOGLE_APPLICATION_CREDENTIALS="key.json"
-          python etl.py
+          python etl.py 
 
 
       - name: Run dbt models
         env:
-          DBT_GOOGLE_PROJECT: upheld-momentum-463013-v7
-          DBT_GOOGLE_KEYFILE_JSON_B64: ${{ secrets.GCP_CREDENTIALS }}
+           DBT_GOOGLE_PROJECT: upheld-momentum-463013-v7
+           DBT_GOOGLE_KEYFILE_JSON: ${{ secrets.GCP_CREDENTIALS }}
         run: |
-          echo "$DBT_GOOGLE_KEYFILE_JSON_B64" | base64 -d > key.json
-          export GOOGLE_APPLICATION_CREDENTIALS="key.json"
-          dbt deps --profiles-dir .dbt
-          dbt seed --profiles-dir .dbt
-          dbt run --profiles-dir .dbt --select staging
+           dbt deps --profiles-dir .dbt
+           dbt seed --profiles-dir .dbt
+           dbt run --profiles-dir .dbt --select staging 
 
