@@ -4,7 +4,7 @@ import isodate
 from datetime import datetime
 from dotenv import dotenv_values
 from google.cloud import bigquery
-from google.oauth2 import service_account
+
 
 
 
@@ -69,9 +69,7 @@ df = pd.DataFrame(video_data)
 
 
 
-credentials = service_account.Credentials.from_service_account_file(
-    r"C:\Users\tanju\Desktop\upheld-momentum-463013-v7-a9926786a277.json"
-)
+
 
 #lient = bigquery.Client(credentials=credentials, project='upheld-momentum-463013-v7')
 
