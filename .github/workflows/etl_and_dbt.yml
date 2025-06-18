@@ -40,9 +40,6 @@ jobs:
             echo "${{ secrets.GCP_CREDENTIALS }}" > key.json
           fi
 
-          export GOOGLE_APPLICATION_CREDENTIALS="key.json"
-
-
 
 
       - name: Run ETL script
