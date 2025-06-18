@@ -2,8 +2,9 @@ name: Run ETL + dbt
 
 on:
   schedule:
-    - cron: '30 23 * 3-10 *'
+    - cron: '45 1 * * *'
   workflow_dispatch:
+
 
 jobs:
   run_pipeline:
@@ -11,6 +12,9 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+
+      - name: List repo files
+        run: ls -la
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -30,16 +34,16 @@ jobs:
           python etl.py  # change to your script's actual name
 
       - name: Set up dbt
-        uses: dbt-labs/dbt-action@v1
+        uses: dbt-labs/action-dbt@v1
         with:
           dbt-version: 1.7.0
+
 
       - name: Run dbt models
         env:
           DBT_GOOGLE_PROJECT: upheld-momentum-463013-v7
           DBT_GOOGLE_KEYFILE_JSON: ${{ secrets.GCP_CREDENTIALS }}
         run: |
-          cd dbt_project
           dbt deps
           dbt seed
           dbt run --select staging
