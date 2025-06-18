@@ -33,10 +33,9 @@ jobs:
           export GOOGLE_APPLICATION_CREDENTIALS="key.json"
           python etl.py  # change to your script's actual name
 
-      - name: Set up dbt
-        uses: dbt-labs/action-dbt@v1.1.0
-        with:
-          dbt-version: 1.7.0
+      
+      - name: Install dbt
+        run: pip install dbt-bigquery==1.7.0
 
 
       - name: Run dbt models
