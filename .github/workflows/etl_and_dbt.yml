@@ -29,19 +29,29 @@ jobs:
         run: echo "api_key=${{ secrets.YOUTUBE_API_KEY }}" > .env
 
 
+
       - name: Create GCP credentials file
         run: |
-            if echo "${{ secrets.GCP_CREDENTIALS }}" | grep '\\n' > /dev/null; then
-              echo "Detected \\n-escaped JSON. Decoding it..."
-              echo "${{ secrets.GCP_CREDENTIALS }}" | sed 's/\\n/\n/g' > key.json
-            else
-              echo "Detected multiline JSON. Writing directly..."
-              echo "${{ secrets.GCP_CREDENTIALS }}" > key.json
-            fi
+          if echo "${{ secrets.GCP_CREDENTIALS }}" | grep '\\n' > /dev/null; then
+            echo "Detected \\n-escaped JSON. Decoding it..."
+            echo "${{ secrets.GCP_CREDENTIALS }}" | sed 's/\\n/\n/g' > key.json
+          else
+            echo "Detected multiline JSON. Writing directly..."
+            echo "${{ secrets.GCP_CREDENTIALS }}" > key.json
+          fi
 
-            export GOOGLE_APPLICATION_CREDENTIALS="key.json"
-            python etl.py
+          export GOOGLE_APPLICATION_CREDENTIALS="key.json"
 
+
+
+
+      - name: Run ETL script
+        #env:
+          #GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GCP_CREDENTIALS }}
+        run: |
+          echo "$GOOGLE_APPLICATION_CREDENTIALS_JSON" > key.json
+          export GOOGLE_APPLICATION_CREDENTIALS="key.json"
+          python etl.py 
 
       
       - name: Install dbt
