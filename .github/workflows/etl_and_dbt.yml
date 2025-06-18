@@ -34,7 +34,7 @@ jobs:
           python etl.py  # change to your script's actual name
 
       - name: Set up dbt
-        uses: dbt-labs/action-dbt@v1
+        uses: dbt-labs/action-dbt@v1.1.0
         with:
           dbt-version: 1.7.0
 
