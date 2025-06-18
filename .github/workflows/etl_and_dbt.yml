@@ -33,7 +33,7 @@ jobs:
         env:
           GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GCP_CREDENTIALS }}
         run: |
-          echo "$GOOGLE_APPLICATION_CREDENTIALS_JSON" > key.json
+          python -c "import os, json; print(json.loads(os.environ['GOOGLE_APPLICATION_CREDENTIALS_JSON']), file=open('key.json','w'))"
           export GOOGLE_APPLICATION_CREDENTIALS="key.json"
           python etl.py 
 
