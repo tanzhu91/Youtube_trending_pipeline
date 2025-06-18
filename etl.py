@@ -8,8 +8,8 @@ from google.cloud import bigquery
 
 
 
-config = dotenv_values()
-api_key = config['api_key']
+#config = dotenv_values()
+#api_key = config['api_key']
 youtube = build("youtube", "v3", developerKey=api_key)
 
 
