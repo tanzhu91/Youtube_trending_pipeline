@@ -1,23 +1,11 @@
 default:
-  target: dev
   outputs:
     dev:
       type: bigquery
       method: service-account
-      keyfile_json: |
-        {
-          "type": "service_account",
-          "project_id": "upheld-momentum-463013-v7",
-          "private_key_id": "a9926786a277d021d78939431b8c550bbfdb59c4",
-          "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDdhUqivk97Nu7a\n9bGRrkKYUJFnmqCS92uknIuw+pi4evdG0GWZZGptQ1Z/q/Q/mFT7zYduOiPfl/n1\nXZ79d13KApk8DI87wqfOBGTSYmvjGYiu7aLZlEe6ZAuSjX3ewP7KaOZmhE5DG72L\nUhsk3Cdd0Ha3i8BzArXgCDNwRiPOeGs8FDxuCyNhbQQ9CjyfoSp744OzLmiAy8Ss\n/YRyR2QNfPRZwV90AHXlwbtHmjMnB/DPVjMhgTiZVkAkqnWefydIZyZjDLJincjo\nxtP0kCH3icObaBMOnqzKy4cjKebJRSSoC/pAtAFpEzJ9/pMsmGvzXNuUrzM1WFZW\nqUFL6k2hAgMBAAECggEAMeWWPDY13QEwqC1zg+cGpRxwxC92P+RvYLLKXGD2CYfZ\nLyA94mFV/6qNT1DCQZjke5t+B/wcnH61FOmzqFA81gXj0jzZ/pIIDkW7GBCHUK4t\ntYldhzj5NyjV2nr4gTZjreAXFbxzjHYxKbKi3pigXWdZdlqKTN2tbfsq6v1Bj33w\n3ZDAQkAJRUvux9QaYBr//D+GqssIuogXyB7YiEzT6OwJVxg8kFTuoXTJpOBkQNTd\nHBiTbnAl6Kw7xLC8I84axNte1D27qhuUWMcmlNZr9TfXHlUlI83DnIdzHDUvjWas\nNgyiOhuSLYsZvDRcyFFcRgInscZSCsYJSFcgXloESQKBgQD9Rmf3CcRUkn9qWH2D\njJfK2DQqGxQs9yWKD8x9cBELgRjGQNUTgN31S2SRV3F5Bzg+qgPZqiEVxTPxlQR+\nER+FRqKdzGu07MuC7n4CKoNdNRdwhur5UyjRSsZ2NIpA/VUkyw02boYUNbNsTiut\nGm62/scDjFYpcrLnbtH0kWX++wKBgQDf52yy8KLd1oDDNIPOQzA3u0c/nE3rZC0/\nOScqeFsbXuwIB5+MNWyJBj16g5lBggz7n7DnwXeTgGe8Y2IchAE2yHfIuaZMXkjH\njLFd+xM9mod5yLNJF/sNgkF9xn1Qo1qN6jrMKrryAJwZ/pslHTCZQQ4qpnhlM7+M\njbnOa3dTEwKBgQDfSh0KTFAMh4NRjGZLfb2tFWMX4/urkNBFoZwU0qIUVGI1Fp9D\nrI8CXM9y23asztKlXFo8oaK9gLhEua3WPt5dL2LaX4htX34kFoJ9AmIB4HajvC6Y\nVNpdeeDyAWwJ084mu+UQIeyPELD4QQp8eBs3tfJajHTB4d8b7jWnujAD1QKBgQDT\ntC+06Y41DrJk3+yYRDL9Hxh47sNGBEw78UA1CeOq949Y8ExM996NmNbcVj28EMlR\nyWYtW2JClzB+kcGckLvNHrMTmWXB44wREdhKsjE5GDlsTvYl8ISx+y0NTXYDntDq\nSkQZ83UbiLQQaAoth3ICFd7dONWxasJ8lSzQHhCO/QKBgDv1nuy5W5iTBqlzEncw\nD4RO6vrvlTEPa6rbDlASut5+z23dM5zpkRQiNnSzrPrdZSocEelOCRYLSSM2YaUA\nj5RwJYZIXRDQdaNhXKndeYQFT/BYTJePAfD82k3R1Dw/4A/yYaUgEnrJA01+zgkp\nJgq7zvutHiZa8vnkQwCkSNCz\n-----END PRIVATE KEY-----\n",
-          "client_email": "dbt-bq-upload@upheld-momentum-463013-v7.iam.gserviceaccount.com",
-          "client_id": "105487848312313976413",
-          "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-          "token_uri": "https://oauth2.googleapis.com/token",
-          "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-          "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dbt-bq-upload%40upheld-momentum-463013-v7.iam.gserviceaccount.com",
-          "universe_domain": "googleapis.com"
-        }
       project: upheld-momentum-463013-v7
-      dataset: your_dataset
-      threads: 1
+      dataset: dbt_tdereli
+      keyfile_json: "{{ env_var('DBT_GOOGLE_KEYFILE_JSON') }}"
+      threads: 4
+      timeout_seconds: 300
+  target: dev
