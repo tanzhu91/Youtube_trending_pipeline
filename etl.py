@@ -101,7 +101,7 @@ schema = [
 # Configure job to overwrite table if exists
 job_config = bigquery.LoadJobConfig(
     schema=schema,
-    write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
+    write_disposition=bigquery.WriteDisposition.APPEND,
 )
 
 # Load data into BigQuery
