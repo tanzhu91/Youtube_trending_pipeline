@@ -19,6 +19,3 @@ models:
   Youtube_trending_pipeline:
     staging:
       +materialized: table
-    marts:
-      core:
-        +materialized: table
