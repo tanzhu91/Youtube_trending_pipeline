@@ -2,14 +2,14 @@ from googleapiclient.discovery import build
 import pandas as pd
 import isodate
 from datetime import datetime
-from dotenv import dotenv_values
 from google.cloud import bigquery
+import os
 
 
 
 
-config = dotenv_values()
-api_key = config['api_key']
+api_key = os.getenv("YOUTUBE_API_KEY")
+
 youtube = build("youtube", "v3", developerKey=api_key)
 
 
