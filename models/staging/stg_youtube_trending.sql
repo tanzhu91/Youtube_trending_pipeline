@@ -17,6 +17,23 @@ with base as (
         comment_count
     from {{ source('youtube_source', 'youtube_trending_videos') }}
 ),
+
+ranked as (
+    select
+        *,
+        ROW_NUMBER() OVER (
+            PARTITION BY video_id
+            ORDER BY load_date DESC
+        ) as row_num
+    from base
+),
+
+deduplicated as (
+    select *
+    from ranked
+    where row_num = 1
+),
+
 transformed as (
     select
         load_date,
@@ -61,7 +78,7 @@ transformed as (
         view_count,
         like_count,
         comment_count
-    from base
+    from deduplicated
 )
 
 select * from transformed
