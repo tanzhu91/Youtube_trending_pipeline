@@ -37,13 +37,3 @@ jobs:
           export GOOGLE_APPLICATION_CREDENTIALS="key.json"
           python etl.py 
 
-
-      #- name: Run dbt models
-        #env:
-           #DBT_GOOGLE_PROJECT: upheld-momentum-463013-v7
-           #DBT_GOOGLE_KEYFILE_JSON: ${{ secrets.GCP_CREDENTIALS }}
-        #run: |
-           #dbt deps --profiles-dir .dbt
-           #dbt seed --profiles-dir .dbt
-           #dbt run --profiles-dir .dbt --select staging 
-

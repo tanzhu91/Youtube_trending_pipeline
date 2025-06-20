@@ -70,18 +70,15 @@ df = pd.DataFrame(video_data)
 
 
 
-
-#lient = bigquery.Client(credentials=credentials, project='upheld-momentum-463013-v7')
-
 client = bigquery.Client()
 
-# Set your dataset and table
-dataset_id = 'dbt_tdereli'  # e.g. 'dbt_tdereli'
+
+dataset_id = 'dbt_tdereli' 
 table_id = 'youtube_trending_videos'
 
 table_ref = client.dataset(dataset_id).table(table_id)
 
-# Define table schema (optional but recommended)
+
 schema = [
     bigquery.SchemaField("load_date", "TIMESTAMP"),
     bigquery.SchemaField("video_id", "STRING"),
@@ -98,14 +95,12 @@ schema = [
     bigquery.SchemaField("comment_count", "INTEGER"),
 ]
 
-# Configure job to overwrite table if exists
+
 job_config = bigquery.LoadJobConfig(
     schema=schema,
     write_disposition=bigquery.WriteDisposition.WRITE_APPEND,
 )
 
-# Load data into BigQuery
-job = client.load_table_from_dataframe(df, table_ref, job_config=job_config)
-job.result()  # Wait for completion
 
-#print(f"Loaded {job.output_rows} rows into {dataset_id}.{table_id}")
+job = client.load_table_from_dataframe(df, table_ref, job_config=job_config)
+job.result()
