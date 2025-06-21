@@ -37,19 +37,11 @@ deduplicated as (
 transformed as (
     select
         load_date,
-        EXTRACT(YEAR  FROM load_date) as load_year,
-        EXTRACT(MONTH FROM load_date) as load_month,
-        EXTRACT(DAY   FROM load_date) as load_day,
-        EXTRACT(HOUR  FROM load_date) as load_hour,
         video_id,
         title,
         description,
         channel_title,
         published_at,
-        EXTRACT(YEAR  FROM published_at) as published_year,
-        EXTRACT(MONTH FROM published_at) as published_month,
-        EXTRACT(DAY   FROM published_at) as published_day,
-        EXTRACT(HOUR  FROM published_at) as published_hour,
         category_id,
         CASE CAST(category_id as INT64)
           WHEN 1 THEN 'Film & Animation'
