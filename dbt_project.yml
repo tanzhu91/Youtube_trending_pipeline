@@ -19,3 +19,5 @@ models:
   Youtube_trending_pipeline:
     staging:
       +materialized: table
+    prep:
+      +materialized: table
