@@ -18,10 +18,10 @@ metrics as (
         view_count,
         like_count,
         comment_count,
-        safe_divide(like_count, view_count) as like_rate,
-        safe_divide(comment_count, view_count) as comment_rate,
-        duration_minutes > 10 as is_long_video,
-        view_count > 1_000_000 as is_viral
+        safe_divide(like_count, view_count) AS like_rate,
+        safe_divide(comment_count, view_count) AS comment_rate,
+        duration_minutes > 10 AS is_long_video,
+        view_count > 1000000 AS is_viral
 
     from base
 )
