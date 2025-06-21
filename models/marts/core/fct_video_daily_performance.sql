@@ -6,12 +6,13 @@ with base as (
 
 daily_stats as (
     select
-        video_id,
         title,
         channel_title,
         category_name,
-        load_hour,
         DATE(load_date) as load_date,
+        load_hour,
+        DATE(published_at) as published_at,
+        published_hour,
         max(view_count) as max_views,
         max(like_count) as max_likes,
         max(comment_count) as max_comments,
