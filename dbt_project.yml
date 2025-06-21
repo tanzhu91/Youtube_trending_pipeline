@@ -21,3 +21,6 @@ models:
       +materialized: table
     prep:
       +materialized: table
+    marts:
+      core:
+        +materialized: table
