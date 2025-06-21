@@ -11,7 +11,7 @@ daily_stats as (
         channel_title,
         category_name,
         DATE(load_date) as load_date,
-        EXTRACT(HOUR FROM load_date) AS load_hour,
+        FORMAT_TIMESTAMP('%H:%M', load_date) AS load_hour,
         max(view_count) as max_views,
         max(like_count) as max_likes,
         max(comment_count) as max_comments,
