@@ -2,7 +2,7 @@
 
 with base as (
     select *
-    from {{ ref('prep_video_metric') }}
+    from {{ ref('prep_video_metrics') }}
 ),
 
 category_stats as (
