@@ -13,9 +13,11 @@ daily_stats as (
         load_hour,
         DATE(published_at) as published_at,
         published_hour,
-        view_count,
-        like_count,
-        comment_count
+        max(view_count) as max_views,
+        max(like_count) as max_likes,
+        max(comment_count) as max_comments,
+        count(*) as times_seen,
+        count(distinct published_at) as publish_dates_count
     from base
     group by video_id, title, channel_title, category_name,  DATE(load_date) , load_hour, DATE(published_at) ,published_hour
 )
