@@ -36,12 +36,12 @@ deduplicated as (
 
 transformed as (
     select
+        published_at,
         load_date,
         video_id,
         title,
         description,
         channel_title,
-        published_at,
         category_id,
         CASE CAST(category_id as INT64)
           WHEN 1 THEN 'Film & Animation'
