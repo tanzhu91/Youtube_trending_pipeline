@@ -14,7 +14,7 @@ daily_stats as (
         channel_title,
         category_name,
         SUM(view_count) as sum_views,
-        SUM(like_count)as as sum_likes,
+        SUM(like_count) as as sum_likes,
         SUM(comment_count) as sum_comments
     from base
     group by DATE(load_date) , load_hour, DATE(published_at) , published_hour ,video_id, title, channel_title, category_name
