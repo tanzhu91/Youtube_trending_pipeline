@@ -6,20 +6,18 @@ with base as (
 
 daily_stats as (
     select
-        title,
-        channel_title,
-        category_name,
         DATE(load_date) as load_date,
         load_hour,
         DATE(published_at) as published_at,
         published_hour,
-        max(view_count) as max_views,
-        max(like_count) as max_likes,
-        max(comment_count) as max_comments,
-        count(*) as times_seen,
-        count(distinct published_at) as publish_dates_count
+        title,
+        channel_title,
+        category_name,
+        SUM(view_count) as sum_views,
+        SUM(like_countas sum_likes,
+        SUM(comment_count) as sum_comments
     from base
-    group by video_id, title, channel_title, category_name,  DATE(load_date) , load_hour, DATE(published_at) ,published_hour
+    group by DATE(load_date) , load_hour, DATE(published_at) , published_hour ,video_id, title, channel_title, category_name
 )
 
 select * from daily_stats
