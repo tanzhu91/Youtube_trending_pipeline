@@ -7,8 +7,10 @@ with base as (
 daily_stats as (
     select
         DATE(load_date) as load_date,
+        EXTRACT(DAY FROM load_date) AS load_day,
         load_hour,
         DATE(published_at) as published_at,
+        EXTRACT(DAY FROM published_at) AS publish_day,
         published_hour,
         title,
         channel_title,
