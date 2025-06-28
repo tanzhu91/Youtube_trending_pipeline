@@ -19,7 +19,7 @@ daily_stats as (
         SUM(like_count) as sum_likes,
         SUM(comment_count) as sum_comments
     from base
-    group by DATE(load_date) , load_hour, DATE(published_at) , published_hour , title, channel_title, category_name
+    group by DATE(load_date), load_day, load_hour, DATE(published_at), publish_day, published_hour, title, channel_title, category_name
 )
 
 select * from daily_stats
