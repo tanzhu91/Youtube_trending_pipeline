@@ -8,7 +8,6 @@ with base as (
 category_stats as (
     select
         date(load_date) as date,
-        FORMAT_TIMESTAMP('%H:%M', load_date) AS load_hour,
         category_name,
         count(*) as video_count,
         sum(view_count) as total_views
