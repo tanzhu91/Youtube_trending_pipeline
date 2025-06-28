@@ -9,7 +9,9 @@ daily_stats as (
         DATE(published_at) as published_at,
         SUM(view_count) as sum_views,
         SUM(like_count) as sum_likes,
-        SUM(comment_count) as sum_comments
+        SUM(comment_count) as sum_comments,
+        COUNT(*) as video_count,
+        SUM(duration_hours) as sum_duration_hours
     from base
     group by 1
 )
