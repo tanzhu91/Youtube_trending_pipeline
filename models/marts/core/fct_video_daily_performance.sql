@@ -15,5 +15,5 @@ daily_stats as (
         SUM(comment_count) as sum_comments
     from base
     group by DATE(load_date), load_day, load_hour, DATE(published_at)
-
+)
 select * from daily_stats
