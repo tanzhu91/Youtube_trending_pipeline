@@ -20,4 +20,4 @@ category_stats as (
 
 select *
 from category_stats
-order by date, total_views desc
+order by date, sum_views asc
