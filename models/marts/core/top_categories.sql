@@ -10,7 +10,7 @@ category_stats as (
         date(published_at) as date,
         category_name,
         count(*) as video_count,
-        sum(view_count) as total_views,
+        sum(view_count) as sum_views,
         SUM(like_count) as sum_likes,
         SUM(comment_count) as sum_comments,
         SUM(duration_hours) as sum_duration_hours
