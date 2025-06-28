@@ -14,3 +14,4 @@ daily_stats as (
     group by 1
 )
 select * from daily_stats
+order by published_at desc
