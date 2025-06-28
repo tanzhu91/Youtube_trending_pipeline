@@ -12,14 +12,11 @@ daily_stats as (
         DATE(published_at) as published_at,
         EXTRACT(DAY FROM published_at) AS publish_day,
         published_hour,
-        title,
-        channel_title,
-        category_name,
         SUM(view_count) as sum_views,
         SUM(like_count) as sum_likes,
         SUM(comment_count) as sum_comments
     from base
-    group by DATE(load_date), load_day, load_hour, DATE(published_at), publish_day, published_hour, title, channel_title, category_name
+    group by DATE(load_date), load_day, load_hour, DATE(published_at), publish_day, published_hour
 )
 
 select * from daily_stats
