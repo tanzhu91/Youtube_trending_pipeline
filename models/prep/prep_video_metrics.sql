@@ -6,19 +6,13 @@ with base as (
 
 metrics as (
     select
+        published_at,
+        FORMAT_TIMESTAMP('%H:%M', published_at) AS published_hour,
+        load_date,
+        FORMAT_TIMESTAMP('%H:%M', load_date) AS load_hour,
         video_id,
         title,
         channel_title,
-        published_at,
-        EXTRACT(YEAR  FROM published_at) as published_year,
-        EXTRACT(MONTH FROM published_at) as published_month,
-        EXTRACT(DAY   FROM published_at) as published_day,
-        FORMAT_TIMESTAMP('%H:%M', published_at) AS published_hour,
-        load_date,
-        EXTRACT(YEAR  FROM load_date) as load_year,
-        EXTRACT(MONTH FROM load_date) as load_month,
-        EXTRACT(DAY   FROM load_date) as load_day,
-        FORMAT_TIMESTAMP('%H:%M', load_date) AS load_hour,
         category_name,
         duration_seconds,
         duration_minutes,
