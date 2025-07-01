@@ -8,7 +8,7 @@
 SELECT
   DISTINCT video_id,
   title,
-  channel_id,
-  publish_time,
+  channel_title,
+  publish_at,
   duration_hours
 FROM {{ ref('stg_youtube_trending') }}
