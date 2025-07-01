@@ -3,6 +3,8 @@
     schema='youtube_star_schema'
 ) }}
 
+create or replace table `upheld-momentum-463013-v7`.`dbt_tdereli_youtube_star_schema`.`fact_video_metrics`
+
 SELECT
   video_id,
   category_id,
