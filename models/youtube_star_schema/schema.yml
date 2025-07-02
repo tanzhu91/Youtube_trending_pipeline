@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: dim_video
+    description: "Dimension table for YouTube videos"
+    columns:
+      - name: video_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_category_star
+    description: "Dimension table for video categories"
+    columns:
+      - name: category_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_video_metrics
+    description: "Fact table for daily video performance"
+    columns:
+      - name: video_id
+        description: "Foreign key to dim_video"
+        tests:
+          - relationships:
+              to: ref('dim_video')
+              field: video_id
+      - name: category_id
+        description: "Foreign key to dim_category"
+        tests:
+          - relationships:
+              to: ref('dim_category')
+              field: category_id
+      - name: load_date
+        description: "Date of the performance record"
