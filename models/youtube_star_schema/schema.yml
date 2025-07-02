@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: dim_video
+  - name: dim_video_star
     description: "Dimension table for YouTube videos"
     columns:
       - name: video_id
@@ -26,13 +26,13 @@ models:
         description: "Foreign key to dim_video"
         tests:
           - relationships:
-              to: ref('dim_video')
+              to: ref('dim_video_star')
               field: video_id
       - name: category_id
         description: "Foreign key to dim_category"
         tests:
           - relationships:
-              to: ref('dim_category')
+              to: ref('dim_category_star')
               field: category_id
       - name: load_date
         description: "Date of the performance record"
