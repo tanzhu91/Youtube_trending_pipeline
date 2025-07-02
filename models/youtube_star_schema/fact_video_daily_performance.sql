@@ -1,4 +1,4 @@
-{{ config(materialized='view', schema='dbt_tdereli_youtube_star_schema') }}
+{{ config(materialized='view', schema='youtube_star_schema') }}
 
 SELECT
   video_id,
