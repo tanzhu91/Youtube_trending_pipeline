@@ -19,6 +19,15 @@ models:
           - unique
           - not_null
 
+  - name: dim_channel_star
+    description: "Dimension table for YouTube channels"
+    columns:
+      - name: channel_title
+        description: "Primary key for channel"
+        tests:
+          - unique
+          - not_null
+
   - name: fact_video_metrics
     description: "Fact table for daily video performance"
     columns:
@@ -36,3 +45,9 @@ models:
               field: category_id
       - name: load_date
         description: "Date of the performance record"
+      - name: channel_title
+        description: "Foreign key to dim_channel"
+        tests:
+          - relationships:
+              to: ref('dim_channel_star')
+              field: channel_title
