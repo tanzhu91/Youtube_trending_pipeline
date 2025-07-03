@@ -8,8 +8,5 @@
 SELECT
   DISTINCT video_id,
   published_at,
-  load_date,
-  duration_hours,
-  duration_minutes,
-  duration_seconds
+  load_date
 FROM {{ ref('stg_youtube_trending') }}
