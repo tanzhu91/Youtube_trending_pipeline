@@ -7,7 +7,6 @@
 SELECT
   video_id,
   category_id,
-  default_language,
   DATE(published_at) AS publish_date,
   DATE(load_date) AS load_date,
   DATE_DIFF(DATE(load_date), DATE(published_at), DAY) AS trending_time,
