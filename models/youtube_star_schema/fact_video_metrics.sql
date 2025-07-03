@@ -5,7 +5,6 @@
 
 
 SELECT
-  channel_title,
   video_id,
   category_id,
   default_language,
@@ -16,4 +15,4 @@ SELECT
   SUM(like_count) AS sum_likes,
   SUM(comment_count) AS sum_comments
 FROM {{ ref('stg_youtube_trending') }}
-GROUP BY 1, 2, 3, 4, 5 , 6 ,7
+GROUP BY 1, 2, 3, 4, 5 , 6
