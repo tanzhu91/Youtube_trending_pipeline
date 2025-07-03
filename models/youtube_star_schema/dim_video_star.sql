@@ -10,5 +10,6 @@ SELECT
   title,
   channel_title,
   published_at,
+  load_date,
   duration_hours
 FROM {{ ref('stg_youtube_trending') }}
