@@ -5,7 +5,7 @@ models:
     description: "Dimension table for YouTube videos"
     columns:
       - name: video_id
-        description: "Primary key"
+        description: "Primary key video"
         tests:
           - unique
           - not_null
@@ -14,7 +14,7 @@ models:
     description: "Dimension table for video categories"
     columns:
       - name: category_id
-        description: "Primary key"
+        description: "Primary key category"
         tests:
           - unique
           - not_null
@@ -43,8 +43,6 @@ models:
           - relationships:
               to: ref('dim_category_star')
               field: category_id
-      - name: load_date
-        description: "Date of the performance record"
       - name: channel_title
         description: "Foreign key to dim_channel"
         tests:
