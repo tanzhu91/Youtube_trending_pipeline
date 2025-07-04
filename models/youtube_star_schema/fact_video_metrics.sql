@@ -3,17 +3,26 @@
     schema='youtube_star_schema'
 ) }}
 
+WITH stg AS (
+    SELECT *
+    FROM {{ ref('stg_youtube_trending') }}
+),
+
+channel_info AS (
+    SELECT video_id, channel_id
+    FROM {{ source('dbt_tdereli', 'channel_info_enriched') }}
+)
 
 SELECT
-  video_id,
-  category_id,
-  channel_id,
-  --DATE(published_at) AS publish_date,
-  --DATE(load_date) AS load_date,
-  view_count AS views,
-  like_count AS likes,
-  comment_count AS comments,
-  duration_hours,
-  duration_minutes,
-  duration_seconds
-FROM {{ ref('stg_youtube_trending') }}
+  stg.video_id,
+  stg.category_id,
+  ci.channel_id,
+  stg.view_count AS views,
+  stg.like_count AS likes,
+  stg.comment_count AS comments,
+  stg.duration_hours,
+  stg.duration_minutes,
+  stg.duration_seconds
+FROM stg
+LEFT JOIN channel_info ci
+  ON stg.video_id = ci.video_id
