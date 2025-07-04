@@ -22,7 +22,7 @@ models:
   - name: dim_channel_star
     description: "Dimension table for YouTube channels"
     columns:
-      - name: channel_title
+      - name: channel_id
         description: "Primary key for channel"
         tests:
           - unique
@@ -43,9 +43,9 @@ models:
           - relationships:
               to: ref('dim_category_star')
               field: category_id
-      - name: channel_title
+      - name: channel_id
         description: "Foreign key to dim_channel"
         tests:
           - relationships:
               to: ref('dim_channel_star')
-              field: channel_title
+              field: channel_id
