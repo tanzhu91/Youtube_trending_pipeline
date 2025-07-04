@@ -26,7 +26,7 @@ models:
       core:
         +materialized: table
     youtube_star_schema:
-      +schema: youtube_star_schema
+      +schema: star_schema
       +materialized: table
       dimensions:
         +materialized: table
