@@ -18,6 +18,7 @@ clean-targets:
 models:
   Youtube_trending_pipeline:
     staging:
+      +schema: staging
       +materialized: table
     prep:
       +materialized: table
@@ -31,6 +32,7 @@ models:
         +materialized: table
       facts:
         +materialized: table
+
 
 
 
