@@ -3,4 +3,4 @@
 SELECT DISTINCT
   title,        
   channel_title
-FROM {{ ref('stg_youtube_trending') }}
+FROM {{ ref('channel_info_enriched') }}
