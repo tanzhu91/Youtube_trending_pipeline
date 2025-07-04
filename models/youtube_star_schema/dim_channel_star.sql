@@ -2,6 +2,6 @@
 
 SELECT DISTINCT
   channel_id,        
-  channel_titleSELECT *
+  channel_title
 FROM {{ source('dbt_tdereli', 'channel_info_enriched') }}
 
