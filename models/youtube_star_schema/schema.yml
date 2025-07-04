@@ -1,5 +1,13 @@
 version: 2
 
+sources:
+  - name: dbt_tdereli
+    database: upheld-momentum-463013-v7
+    tables:
+      - name: stg_youtube_trending
+      - name: channel_info_enriched
+
+
 models:
   - name: dim_video_star
     description: "Dimension table for YouTube videos"
