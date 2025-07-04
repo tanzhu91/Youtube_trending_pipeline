@@ -17,3 +17,12 @@ SELECT
   duration_minutes,
   duration_seconds
 FROM {{ ref('stg_youtube_trending') }}
+GROUP BY
+  video_id,
+  category_id,
+  view_count,
+  like_count,
+  comment_count,
+  duration_hours,
+  duration_minutes,
+  duration_seconds
