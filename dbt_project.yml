@@ -15,19 +15,31 @@ clean-targets:
   - "target"
   - "dbt_modules"
 
+
+
 models:
   Youtube_trending_pipeline:
+
     staging:
-      +materialized: table
+      +schema: staging_youtube
+      +materialized: view
+
     prep:
-      +materialized: table
+      +schema: intermediate_youtube
+      +materialized: ephemeral
+
     marts:
       core:
+        +schema: core_youtube
         +materialized: table
+
     youtube_star_schema:
-      +schema: youtube_star_schema
+      +schema: core_youtube
       +materialized: table
       dimensions:
+        +schema: core_youtube
         +materialized: table
       facts:
+        +schema: core_youtube
         +materialized: table
+
