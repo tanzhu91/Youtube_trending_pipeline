@@ -15,4 +15,3 @@ SELECT
   default_language,
   tags
 FROM {{ ref('stg_youtube_trending') }}
-group by 1,2,3
