@@ -25,4 +25,5 @@ GROUP BY
   comment_count,
   duration_hours,
   duration_minutes,
-  duration_seconds
+  duration_seconds,
+  published_at
