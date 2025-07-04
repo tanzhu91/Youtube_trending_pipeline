@@ -3,4 +3,4 @@
 SELECT DISTINCT
   channel_id,        
   channel_title
-FROM {{ source('dbt_tdereli', 'channel_info_enriched') }}
+FROM {{ ref('channel_info_enriched') }}

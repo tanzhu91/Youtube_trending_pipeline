@@ -7,3 +7,4 @@ sources:
     tables:
       - name: youtube_trending_videos
         description: "Raw YouTube videos data loaded from Python script"
+      - name: channel_info_enriched
