@@ -19,7 +19,7 @@ SELECT
   ci.channel_id,
   stg.published_at,
   stg.load_date,
-  stg.DATE_DIFF(DATE(load_date), DATE(published_at), DAY) AS days_until_it_became_trending,
+  DATE_DIFF(DATE(load_date), DATE(published_at), DAY) AS days_until_it_became_trending,
   stg.view_count AS views,
   stg.like_count AS likes,
   stg.comment_count AS comments,
