@@ -7,6 +7,7 @@
 SELECT
   video_id,
   category_id,
+  channel_id,
   --DATE(published_at) AS publish_date,
   --DATE(load_date) AS load_date,
   view_count AS views,
