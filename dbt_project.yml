@@ -24,7 +24,7 @@ models:
     marts:
       core:
         +materialized: table
-    star_schema:
+    youtube_star_schema:
       +schema: youtube_star_schema
       +materialized: table
       dimensions:
