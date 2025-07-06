@@ -16,7 +16,7 @@ category_stats as (
         SUM(comment_count) as sum_comments,
         SUM(duration_hours) as sum_duration_hours
     from base
-    group by 1, 2
+    group by 1, 2 , 3
 )
 
 select *
