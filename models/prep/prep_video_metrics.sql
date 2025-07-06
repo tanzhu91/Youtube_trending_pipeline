@@ -13,6 +13,7 @@ metrics as (
         video_id,
         title,
         channel_title,
+        category_id,
         category_name,
         duration_seconds,
         duration_minutes,

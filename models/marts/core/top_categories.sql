@@ -8,6 +8,7 @@ with base as (
 category_stats as (
     select
         date(published_at) as date,
+        category_id,
         category_name,
         count(*) as video_count,
         sum(view_count) as sum_views,
