@@ -200,3 +200,4 @@ logs/
 # end dbt Cloud content
 
 .env
+gcp-creds.json
