@@ -200,4 +200,4 @@ logs/
 # end dbt Cloud content
 
 .env
-gcp-creds.json
+/airflow-docker/secrets/gcp-creds.json
