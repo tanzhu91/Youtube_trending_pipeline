@@ -1,0 +1,4 @@
+tqdm
+google-api-python-client
+google-cloud-bigquery
+pandas
