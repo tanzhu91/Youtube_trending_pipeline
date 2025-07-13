@@ -6,3 +6,4 @@ google-cloud-bigquery==3.12.0
 google-auth
 dbt-bigquery==1.7.0
 pyarrow
+tqdm
