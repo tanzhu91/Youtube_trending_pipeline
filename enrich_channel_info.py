@@ -4,7 +4,7 @@ from tqdm import tqdm
 from googleapiclient.discovery import build
 from google.cloud import bigquery
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:/Users/tanju/Desktop/upheld-momentum-463013-v7-910c47d3ace5.json"
+#os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:/Users/tanju/Desktop/upheld-momentum-463013-v7-910c47d3ace5.json"
 YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
 youtube = build("youtube", "v3", developerKey=YOUTUBE_API_KEY)
 
@@ -17,7 +17,7 @@ DEST_TABLE = "channel_info_enriched"
 
 
 
-client = bigquery.Client(project=PROJECT_ID)
+client = bigquery.Client()#project=PROJECT_ID
 
 query = f"""
     SELECT DISTINCT video_id
