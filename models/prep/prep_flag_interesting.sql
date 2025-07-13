@@ -23,7 +23,6 @@ select
     category_id,
     published_at,
     load_date,
-    trending_date,
     view_count,
     like_count,
     comment_count,
