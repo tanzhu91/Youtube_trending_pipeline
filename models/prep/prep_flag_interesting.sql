@@ -27,6 +27,8 @@ select
     like_count,
     comment_count,
     duration_seconds,
+    duration_minutes,
+    duration_hours,
     is_viral,
     is_highly_liked,
     is_highly_commented,

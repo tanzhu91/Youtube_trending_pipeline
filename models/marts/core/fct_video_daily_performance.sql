@@ -11,7 +11,9 @@ daily_stats as (
         SUM(like_count) as sum_likes,
         SUM(comment_count) as sum_comments,
         COUNT(*) as video_count,
-        SUM(duration_hours) as sum_duration_hours
+        SUM(duration_hours) as sum_duration_hours,
+        sum(like_rate),
+        sum(comment_rate)
     from base
     group by 1
 )
