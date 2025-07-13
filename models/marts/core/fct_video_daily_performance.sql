@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='view') }}
 
 with base as (
     select * from {{ ref('prep_video_metrics') }}
