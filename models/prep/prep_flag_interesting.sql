@@ -9,9 +9,9 @@ with base as (
 flags as (
     select
         *,
-        view_count > 1_000_000 as is_viral,
-        like_count > 100_000 as is_highly_liked,
-        comment_count > 50_000 as is_highly_commented,
+        view_count > 1000000 as is_viral,
+        like_count > 100000 as is_highly_liked,
+        comment_count > 50000 as is_highly_commented,
         duration_seconds > 600 as is_long_form
     from base
 )
