@@ -119,6 +119,7 @@ job_config = bigquery.LoadJobConfig(
     ]
 )
 
+
 table_ref = f"{PROJECT_ID}.{TARGET_DATASET}.{DEST_TABLE}"
 load_job = client.load_table_from_dataframe(df_fixed, table_ref, job_config=job_config)
 load_job.result()
