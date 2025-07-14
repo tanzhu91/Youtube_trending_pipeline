@@ -4,8 +4,10 @@ from tqdm import tqdm
 from googleapiclient.discovery import build
 from google.cloud import bigquery
 
+
 YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
 youtube = build("youtube", "v3", developerKey=YOUTUBE_API_KEY)
+
 
 PROJECT_ID = "upheld-momentum-463013-v7"
 DATASET_ID = "dbt_tdereli"
@@ -13,13 +15,16 @@ TARGET_DATASET = "dbt_tdereli"
 SOURCE_TABLE = "stg_youtube_trending"
 DEST_TABLE = "channel_info_enriched"
 
+
 client = bigquery.Client()
+
 
 query = f"""
     SELECT DISTINCT video_id
     FROM `{PROJECT_ID}.{DATASET_ID}.{SOURCE_TABLE}`
 """
 video_ids = [row["video_id"] for row in client.query(query)]
+
 
 def fetch_channel_info(batch_ids):
     try:
@@ -55,8 +60,10 @@ def fetch_channel_info(batch_ids):
         print(f"[ERROR] Failed fetching batch: {e}")
         return [], batch_ids 
 
+
 channel_info = []
 all_missing_ids = []
+
 
 BATCH_SIZE = 50
 for i in tqdm(range(0, len(video_ids), BATCH_SIZE), desc="Fetching channel info"):
@@ -83,20 +90,36 @@ video_title_map = {
     if row["channel_id"] is None and row["channel_title"] is not None
 }
 
+
 def fetch_channel_id_from_title(title):
     try:
         response = youtube.search().list(
             q=title,
             type="channel",
-            part="snippet",
+            part="id,snippet",
             maxResults=1
         ).execute()
+
         items = response.get("items", [])
-        if items:
-            return items[0]["snippet"]["channelId"]
+        if not items:
+            print(f"[WARN] No search results for title: {title}")
+            return None
+        
+        item = items[0]
+        
+        channel_id = item.get("id", {}).get("channelId")
+        if channel_id:
+            return channel_id
+        
+        channel_id = item.get("snippet", {}).get("channelId")
+        if channel_id:
+            return channel_id
+
+        print(f"[WARN] No channelId found in first search result for title: {title}")
     except Exception as e:
-        print(f"[WARN] Could not get channel_id for '{title}': {e}")
+        print(f"[ERROR] Could not get channel_id for '{title}': {e}")
     return None
+
 
 title_cache = {}
 for row in channel_info:
@@ -108,7 +131,9 @@ for row in channel_info:
                 title_cache[title] = fetch_channel_id_from_title(title)
             row["channel_id"] = title_cache[title]
 
+
 df_fixed = pd.DataFrame(channel_info)
+
 
 job_config = bigquery.LoadJobConfig(
     write_disposition="WRITE_TRUNCATE",
