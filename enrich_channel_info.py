@@ -4,7 +4,7 @@ from tqdm import tqdm
 from googleapiclient.discovery import build
 from google.cloud import bigquery
 
-#os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:/Users/tanju/Desktop/upheld-momentum-463013-v7-910c47d3ace5.json"
+
 YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
 youtube = build("youtube", "v3", developerKey=YOUTUBE_API_KEY)
 
@@ -17,7 +17,7 @@ DEST_TABLE = "channel_info_enriched"
 
 
 
-client = bigquery.Client()#project=PROJECT_ID
+client = bigquery.Client()
 
 query = f"""
     SELECT DISTINCT video_id
@@ -94,7 +94,7 @@ if all_missing_ids:
 
 
 
-df = pd.DataFrame(channel_info)
+#df = pd.DataFrame(channel_info)
 
 
 
@@ -109,6 +109,52 @@ job_config = bigquery.LoadJobConfig(
 )
 
 table_ref = f"{PROJECT_ID}.{TARGET_DATASET}.{DEST_TABLE}"
-load_job = client.load_table_from_dataframe(df, table_ref, job_config=job_config)
-load_job.result()
+#load_job = client.load_table_from_dataframe(df, table_ref, job_config=job_config)
+#load_job.result()
 
+
+
+# Step: Fix remaining missing channel_ids using channel_title
+query_missing_titles = f"""
+    SELECT DISTINCT video_id, channel_title
+    FROM `{PROJECT_ID}.{TARGET_DATASET}.{DEST_TABLE}`
+    WHERE channel_id IS NULL AND channel_title IS NOT NULL
+"""
+missing_title_rows = list(client.query(query_missing_titles))
+
+# Build map: video_id -> channel_title
+video_title_map = {row["video_id"]: row["channel_title"] for row in missing_title_rows}
+
+# Fetch channel_id by title
+def fetch_channel_id_from_title(title):
+    try:
+        response = youtube.search().list(
+            q=title,
+            type="channel",
+            part="snippet",
+            maxResults=1
+        ).execute()
+        items = response.get("items", [])
+        if items:
+            return items[0]["snippet"]["channelId"]
+    except Exception as e:
+        print(f"[WARN] Could not get channel_id for '{title}': {e}")
+    return None
+
+# Patch channel_info in-place
+title_cache = {}
+for row in channel_info:
+    if row["channel_id"] is None:
+        vid = row["video_id"]
+        title = video_title_map.get(vid)
+        if title:
+            if title not in title_cache:
+                title_cache[title] = fetch_channel_id_from_title(title)
+            row["channel_id"] = title_cache[title]  # may still be None
+
+
+# Final upload after fixing missing channel_ids
+df_fixed = pd.DataFrame(channel_info)
+
+load_job = client.load_table_from_dataframe(df_fixed, table_ref, job_config=job_config)
+load_job.result()
