@@ -80,34 +80,9 @@ for i in tqdm(range(0, len(video_ids), BATCH_SIZE), desc="Fetching channel info"
 
 
 
-def fetch_channel_id_from_title(title):
-    try:
-        response = youtube.search().list(
-            q=title,
-            type="channel",
-            part="snippet",
-            maxResults=1
-        ).execute()
-        items = response.get("items", [])
-        if items:
-            return items[0]["id"]["channelId"]
-    except Exception as e:
-        print(f"[WARN] Could not get channel_id for '{title}': {e}")
-    return None
+df = pd.DataFrame(channel_info)
 
 
-
-title_cache = {}
-for row in channel_info:
-    if row["channel_id"] is None and row["channel_title"]:
-        title = row["channel_title"]
-        if title not in title_cache:
-            title_cache[title] = fetch_channel_id_from_title(title)
-        row["channel_id"] = title_cache[title]
-
-
-
-df_fixed = pd.DataFrame(channel_info)
 
 
 job_config = bigquery.LoadJobConfig(
@@ -119,10 +94,10 @@ job_config = bigquery.LoadJobConfig(
     ]
 )
 
-
 table_ref = f"{PROJECT_ID}.{TARGET_DATASET}.{DEST_TABLE}"
-load_job = client.load_table_from_dataframe(df_fixed, table_ref, job_config=job_config)
+load_job = client.load_table_from_dataframe(df, table_ref, job_config=job_config)
 load_job.result()
+
 
 
 
