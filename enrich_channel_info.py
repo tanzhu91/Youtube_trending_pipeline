@@ -94,7 +94,7 @@ if all_missing_ids:
 
 
 
-#df = pd.DataFrame(channel_info)
+df = pd.DataFrame(channel_info)
 
 
 
