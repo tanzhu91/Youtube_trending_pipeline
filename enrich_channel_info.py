@@ -101,7 +101,7 @@ def fetch_channel_id_from_title(title):
             maxResults=1
         ).execute()
         items = response.get("items", [])
-        if items:
+        if items and "channelId" in items[0]["id"]:
             return items[0]["id"]["channelId"]
     except Exception as e:
         print(f"[WARN] Could not get channel_id for '{title}': {e}")
