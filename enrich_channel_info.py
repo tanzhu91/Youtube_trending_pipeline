@@ -13,11 +13,11 @@ PROJECT_ID = "upheld-momentum-463013-v7"
 DATASET_ID = "dbt_tdereli"
 TARGET_DATASET = "dbt_tdereli"
 SOURCE_TABLE = "stg_youtube_trending"
-DEST_TABLE = "channel_info_enriched" 
-
+DEST_TABLE = "channel_info_enriched"
 
 
 client = bigquery.Client()
+
 
 query = f"""
     SELECT DISTINCT video_id
@@ -25,8 +25,6 @@ query = f"""
 """
 video_ids = [row["video_id"] for row in client.query(query)]
 
-
-missing_ids_all = []
 
 def fetch_channel_info(batch_ids):
     try:
@@ -64,39 +62,63 @@ def fetch_channel_info(batch_ids):
 
 
 channel_info = []
+
 all_missing_ids = []
 
 
 BATCH_SIZE = 50
-
 for i in tqdm(range(0, len(video_ids), BATCH_SIZE), desc="Fetching channel info"):
     batch = video_ids[i:i + BATCH_SIZE]
     result, missing = fetch_channel_info(batch)
     channel_info.extend(result)
     all_missing_ids.extend(missing)
 
-
-
 if all_missing_ids:
     retry_info = []
-
     for i in tqdm(range(0, len(all_missing_ids), BATCH_SIZE), desc="Retrying missing IDs"):
         batch = all_missing_ids[i:i + BATCH_SIZE]
         result, _ = fetch_channel_info(batch)
         retry_info.extend(result)
 
-
     retry_map = {entry["video_id"]: entry for entry in retry_info if entry["channel_id"]}
-
     for i, row in enumerate(channel_info):
         if row["channel_id"] is None and row["video_id"] in retry_map:
             channel_info[i] = retry_map[row["video_id"]]
 
+video_title_map = {
+    row["video_id"]: row["channel_title"]
+    for row in channel_info
+    if row["channel_id"] is None and row["channel_title"] is not None
+}
 
 
-df = pd.DataFrame(channel_info)
+def fetch_channel_id_from_title(title):
+    try:
+        response = youtube.search().list(
+            q=title,
+            part="id",
+            type="channel",
+            maxResults=1
+        ).execute()
+        items = response.get("items", [])
+        if items:
+            return items[0]["id"]["channelId"]
+    except Exception as e:
+        print(f"[WARN] Could not get channel_id for '{title}': {e}")
+    return None
 
 
+title_cache = {}
+for row in channel_info:
+    if row["channel_id"] is None and row["channel_title"]:
+        title = row["channel_title"]
+        if title not in title_cache:
+            title_cache[title] = fetch_channel_id_from_title(title)
+        row["channel_id"] = title_cache[title]
+
+
+
+df_fixed = pd.DataFrame(channel_info)
 
 
 job_config = bigquery.LoadJobConfig(
@@ -108,10 +130,7 @@ job_config = bigquery.LoadJobConfig(
     ]
 )
 
+
 table_ref = f"{PROJECT_ID}.{TARGET_DATASET}.{DEST_TABLE}"
-load_job = client.load_table_from_dataframe(df, table_ref, job_config=job_config)
+load_job = client.load_table_from_dataframe(df_fixed, table_ref, job_config=job_config)
 load_job.result()
-
-
-
-
