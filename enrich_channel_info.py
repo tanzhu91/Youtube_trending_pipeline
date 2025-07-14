@@ -13,11 +13,11 @@ PROJECT_ID = "upheld-momentum-463013-v7"
 DATASET_ID = "dbt_tdereli"
 TARGET_DATASET = "dbt_tdereli"
 SOURCE_TABLE = "stg_youtube_trending"
-DEST_TABLE = "channel_info_enriched"
+DEST_TABLE = "channel_info_enriched" 
+
 
 
 client = bigquery.Client()
-
 
 query = f"""
     SELECT DISTINCT video_id
@@ -25,6 +25,8 @@ query = f"""
 """
 video_ids = [row["video_id"] for row in client.query(query)]
 
+
+missing_ids_all = []
 
 def fetch_channel_info(batch_ids):
     try:
@@ -66,73 +68,35 @@ all_missing_ids = []
 
 
 BATCH_SIZE = 50
+
 for i in tqdm(range(0, len(video_ids), BATCH_SIZE), desc="Fetching channel info"):
     batch = video_ids[i:i + BATCH_SIZE]
     result, missing = fetch_channel_info(batch)
     channel_info.extend(result)
     all_missing_ids.extend(missing)
 
+
+
 if all_missing_ids:
     retry_info = []
+
     for i in tqdm(range(0, len(all_missing_ids), BATCH_SIZE), desc="Retrying missing IDs"):
         batch = all_missing_ids[i:i + BATCH_SIZE]
         result, _ = fetch_channel_info(batch)
         retry_info.extend(result)
 
+
     retry_map = {entry["video_id"]: entry for entry in retry_info if entry["channel_id"]}
+
     for i, row in enumerate(channel_info):
         if row["channel_id"] is None and row["video_id"] in retry_map:
             channel_info[i] = retry_map[row["video_id"]]
 
-video_title_map = {
-    row["video_id"]: row["channel_title"]
-    for row in channel_info
-    if row["channel_id"] is None and row["channel_title"] is not None
-}
 
 
-def fetch_channel_id_from_title(title):
-    try:
-        response = youtube.search().list(
-            q=title,
-            type="channel",
-            part="id,snippet",
-            maxResults=1
-        ).execute()
-
-        items = response.get("items", [])
-        if not items:
-            print(f"[WARN] No search results for title: {title}")
-            return None
-        
-        item = items[0]
-        
-        channel_id = item.get("id", {}).get("channelId")
-        if channel_id:
-            return channel_id
-        
-        channel_id = item.get("snippet", {}).get("channelId")
-        if channel_id:
-            return channel_id
-
-        print(f"[WARN] No channelId found in first search result for title: {title}")
-    except Exception as e:
-        print(f"[ERROR] Could not get channel_id for '{title}': {e}")
-    return None
+df = pd.DataFrame(channel_info)
 
 
-title_cache = {}
-for row in channel_info:
-    if row["channel_id"] is None:
-        vid = row["video_id"]
-        title = video_title_map.get(vid)
-        if title:
-            if title not in title_cache:
-                title_cache[title] = fetch_channel_id_from_title(title)
-            row["channel_id"] = title_cache[title]
-
-
-df_fixed = pd.DataFrame(channel_info)
 
 
 job_config = bigquery.LoadJobConfig(
@@ -144,7 +108,10 @@ job_config = bigquery.LoadJobConfig(
     ]
 )
 
-
 table_ref = f"{PROJECT_ID}.{TARGET_DATASET}.{DEST_TABLE}"
-load_job = client.load_table_from_dataframe(df_fixed, table_ref, job_config=job_config)
+load_job = client.load_table_from_dataframe(df, table_ref, job_config=job_config)
 load_job.result()
+
+
+
+
