@@ -87,41 +87,8 @@ if all_missing_ids:
         if row["channel_id"] is None and row["video_id"] in retry_map:
             channel_info[i] = retry_map[row["video_id"]]
 
-            
+
 df = pd.DataFrame(channel_info)
-
-
-# Assume df is your existing dataframe from your original script
-# It has 'channel_title' and 'channel_id' columns, but some channel_id are None
-
-def fetch_channel_id_from_title(title):
-    try:
-        response = youtube.search().list(
-            q=title,
-            type="channel",
-            part="snippet",
-            maxResults=1
-        ).execute()
-        items = response.get("items", [])
-        if items:
-            return items[0]["id"]["channelId"]
-    except Exception as e:
-        print(f"[WARN] Could not get channel_id for '{title}': {e}")
-    return None
-
-
-# Extract titles where channel_id is missing
-missing_title_rows = df[df['channel_id'].isnull() & df['channel_title'].notnull()]
-
-# Cache to avoid repeated calls for the same title
-title_cache = {}
-
-for idx, row in missing_title_rows.iterrows():
-    title = row['channel_title']
-    if title not in title_cache:
-        title_cache[title] = fetch_channel_id_from_title(title)
-    df.at[idx, 'channel_id'] = title_cache[title]
-
 
 
 
