@@ -76,12 +76,35 @@ for i in tqdm(range(0, len(video_ids), BATCH_SIZE), desc="Fetching channel info"
     all_missing_ids.extend(missing)
 
 
+def fetch_channel_id_from_title(title):
+    try:
+        response = youtube.search().list(
+            q=title,
+            type="channel",
+            part="snippet",
+            maxResults=1
+        ).execute()
+        items = response.get("items", [])
+        if items:
+            return items[0]["id"]["channelId"]
+    except Exception as e:
+        print(f"[WARN] Could not get channel_id for '{title}': {e}")
+    return None
 
+# Find rows with missing channel_id but known channel_title
+missing_title_rows = [row for row in channel_info if row["channel_id"] is None and row["channel_title"]]
 
+# Cache to avoid repeated API calls for the same channel title
+title_cache = {}
+
+for row in tqdm(missing_title_rows, desc="Fetching missing channel_ids by title"):
+    title = row["channel_title"]
+    if title not in title_cache:
+        title_cache[title] = fetch_channel_id_from_title(title)
+    row["channel_id"] = title_cache[title]
 
 
 df = pd.DataFrame(channel_info)
-
 
 
 
