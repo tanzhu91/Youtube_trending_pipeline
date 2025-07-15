@@ -2,7 +2,7 @@ name: Run ETL + dbt
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 15-23 * * *'
   workflow_dispatch:
 
 
