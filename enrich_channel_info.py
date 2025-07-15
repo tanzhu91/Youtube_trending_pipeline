@@ -75,6 +75,7 @@ for i in tqdm(range(0, len(video_ids), BATCH_SIZE), desc="Fetching channel info"
     channel_info.extend(result)
     all_missing_ids.extend(missing)
 
+
 if all_missing_ids:
     retry_info = []
     for i in tqdm(range(0, len(all_missing_ids), BATCH_SIZE), desc="Retrying missing IDs"):
