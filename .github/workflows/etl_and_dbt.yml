@@ -36,5 +36,4 @@ jobs:
           echo "$GOOGLE_APPLICATION_CREDENTIALS_JSON" > key.json
           export GOOGLE_APPLICATION_CREDENTIALS="key.json"
           python etl.py
-          python enrich_channel_info.py
 
