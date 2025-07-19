@@ -18,3 +18,4 @@ ranked as (
 select *
 from ranked
 where view_rank <= 5
+order by load_date DESC
