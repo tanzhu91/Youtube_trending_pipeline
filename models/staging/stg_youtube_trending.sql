@@ -23,7 +23,7 @@ ranked as (
         *,
         ROW_NUMBER() OVER (
             PARTITION BY video_id
-            ORDER BY load_date DESC
+            ORDER BY load_date ASC
         ) as row_num
     from base
 ),
