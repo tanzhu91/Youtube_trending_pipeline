@@ -9,7 +9,7 @@ WITH stg AS (
 ),
 
 channel_info AS (
-    SELECT video_id, channel_id
+    SELECT *
     FROM {{ source('dbt_tdereli', 'channel_info_enriched') }}
 )
 
