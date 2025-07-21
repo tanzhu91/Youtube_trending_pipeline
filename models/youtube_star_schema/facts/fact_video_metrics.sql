@@ -21,6 +21,7 @@ SELECT
   ci.subscriber_count,
   ci.total_views,
   ci.video_count,
+  ci.country,
   CASE ci.country
     WHEN 'US' THEN 'United States'
     WHEN 'CA' THEN 'Canada'
