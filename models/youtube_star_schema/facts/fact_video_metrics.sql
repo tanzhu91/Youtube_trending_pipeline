@@ -21,8 +21,7 @@ SELECT
   ci.subscriber_count,
   ci.total_views,
   ci.video_count,
-  ci.country,
-    CASE ci.country
+  CASE ci.country
     WHEN 'US' THEN 'United States'
     WHEN 'CA' THEN 'Canada'
     WHEN 'GB' THEN 'United Kingdom'
@@ -76,6 +75,38 @@ SELECT
     WHEN 'PT' THEN 'Portugal'
     WHEN 'SK' THEN 'Slovakia'
     WHEN 'AT' THEN 'Austria'
+    WHEN 'BY' THEN 'Belarus'
+    WHEN 'PR' THEN 'Puerto Rico'
+    WHEN 'KZ' THEN 'Kazakhstan'
+    WHEN 'IQ' THEN 'Iraq'
+    WHEN 'QA' THEN 'Qatar'
+    WHEN 'LB' THEN 'Lebanon'
+    WHEN 'KW' THEN 'Kuwait'
+    WHEN 'GE' THEN 'Georgia'
+    WHEN 'FO' THEN 'Faroe Islands'
+    WHEN 'DO' THEN 'Dominican Republic'
+    WHEN 'LV' THEN 'Latvia'
+    WHEN 'EC' THEN 'Ecuador'
+    WHEN 'PE' THEN 'Peru'
+    WHEN 'MD' THEN 'Moldova'
+    WHEN 'GH' THEN 'Ghana'
+    WHEN 'TZ' THEN 'Tanzania'
+    WHEN 'CY' THEN 'Cyprus'
+    WHEN 'MC' THEN 'Monaco'
+    WHEN 'JO' THEN 'Jordan'
+    WHEN 'MA' THEN 'Morocco'
+    WHEN 'VE' THEN 'Venezuela'
+    WHEN 'LK' THEN 'Sri Lanka'
+    WHEN 'SV' THEN 'El Salvador'
+    WHEN 'UY' THEN 'Uruguay'
+    WHEN 'PA' THEN 'Panama'
+    WHEN 'RS' THEN 'Serbia'
+    WHEN 'GT' THEN 'Guatemala'
+    WHEN 'AG' THEN 'Antigua and Barbuda'
+    WHEN 'ME' THEN 'Montenegro'
+    WHEN 'PY' THEN 'Paraguay'
+    WHEN 'OM' THEN 'Oman'
+    WHEN 'SY' THEN 'Syria'
     ELSE 'Unknown'
   END AS country_name,
   stg.published_at,
