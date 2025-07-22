@@ -18,9 +18,9 @@ SELECT
   stg.category_id,
   ci.channel_id,
   ci.channel_title,
-  ci.subscriber_count,
-  ci.total_views,
-  ci.video_count,
+  ci.subscriber_count as total_channel_subscriber_count,
+  ci.total_views as total_channel_views,
+  ci.video_count as total_channel_video_count,
   ci.country,
   CASE ci.country
     WHEN 'US' THEN 'United States'
@@ -108,6 +108,7 @@ SELECT
     WHEN 'PY' THEN 'Paraguay'
     WHEN 'OM' THEN 'Oman'
     WHEN 'SY' THEN 'Syria'
+    WHEN 'LT' THEN 'Lithuania'
     ELSE 'Unknown'
   END AS country_name,
   stg.published_at,
