@@ -109,6 +109,7 @@ SELECT
     WHEN 'OM' THEN 'Oman'
     WHEN 'SY' THEN 'Syria'
     WHEN 'LT' THEN 'Lithuania'
+    WHEN 'LU' THEN 'LUxembourg'
     ELSE 'Unknown'
   END AS country_name,
   stg.published_at,
