@@ -4,7 +4,7 @@
 
 System architecture:
 
-<img width="770" height="360" alt="Architecture Exercises" src="https://github.com/user-attachments/assets/6c6bb426-6401-45f4-bb7f-3237c3ab6c93" />
+<img width="770" height="430" alt="Architecture Exercises" src="https://github.com/user-attachments/assets/6c6bb426-6401-45f4-bb7f-3237c3ab6c93" />
 
 ## Database schema design 
 
