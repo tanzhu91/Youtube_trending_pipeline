@@ -8,7 +8,7 @@ System architecture:
 
 ## Database schema design 
 
--The two main tables have the following schema as example. Additionaly a star schema is created into a facts table and 3 dimensions tables using both these tables.
+- The two main tables have the following schema as example. Additionaly a star schema is created into a facts table and 3 dimensions tables using both these tables.
 
 <img width="477" height="403" alt="Screenshot (155)" src="https://github.com/user-attachments/assets/661aa972-94e5-4559-b85b-ac268528d4b6" />
 
