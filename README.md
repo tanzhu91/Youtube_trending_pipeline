@@ -10,6 +10,4 @@ System architecture:
 
 - The two main tables have the following schema as example. Additionaly a star schema folder is created into a facts table and 3 dimensions tables using both these tables.
 
-<img width="397" height="333" alt="Screenshot (155)" src="https://github.com/user-attachments/assets/661aa972-94e5-4559-b85b-ac268528d4b6" /> <img width="397" height="333" alt="Screenshot (154)" src="https://github.com/user-attachments/assets/23ca0b8f-e2db-4831-9aa8-c2af819fde5e" />
-
-
+<img width="960" height="540" alt="Architecture Exercises(2)" src="https://github.com/user-attachments/assets/d960dd83-f1ee-4643-977b-e4510284b1ff" />
