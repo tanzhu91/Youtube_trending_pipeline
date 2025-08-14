@@ -13,6 +13,7 @@ System architecture:
 <img width="960" height="540" alt="Architecture Exercises(2)" src="https://github.com/user-attachments/assets/d960dd83-f1ee-4643-977b-e4510284b1ff" />
 
 
+
 Dbt is used to create the different tables with sql queries and schema specifications.
 
 <img width="775" height="847" alt="image" src="https://github.com/user-attachments/assets/d85ca339-1650-40a6-bb72-547b349805a1" />
