@@ -6,13 +6,11 @@
 
 System architecture:
 
-![Architecture Exercises](https://github.com/user-attachments/assets/0953b6ce-838c-4798-9a21-20d90668f352)
+![Architecture Exercises(2)](https://github.com/user-attachments/assets/86140cc2-b62c-4593-81ce-1d2920d7f89c)
 
 ## Database schema design 
 
 - The two main tables have the following schema as example. Additionaly a star schema folder is created into a facts table and 3 dimensions tables using both these tables joined on video_id.
-
-
 
 ![Architecture Exercises(1)](https://github.com/user-attachments/assets/f67d3577-20d2-4ce4-a44d-aaa07dbfd6d0)
 
