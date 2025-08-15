@@ -15,6 +15,6 @@ System architecture:
 ![Architecture Exercises(1)](https://github.com/user-attachments/assets/f67d3577-20d2-4ce4-a44d-aaa07dbfd6d0)
 
 
-Dbt is used to create the different tables with sql queries and schema specifications.
+Dbt is used to create the different stages of the tables with sql queries and schema specifications.
 
 <img width="961" height="947" alt="image" src="https://github.com/user-attachments/assets/d85ca339-1650-40a6-bb72-547b349805a1" />
