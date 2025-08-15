@@ -12,7 +12,7 @@ System architecture:
 
 - The two main tables have the following schema as example. Additionaly a star schema folder is created into a facts table and 3 dimensions tables using both these tables joined on video_id.
 
-<img width="960" height="540" alt="Architecture Exercises(2)" src="https://github.com/user-attachments/assets/d960dd83-f1ee-4643-977b-e4510284b1ff" />
+<img width="960" height="947" alt="Architecture Exercises(2)" src="https://github.com/user-attachments/assets/d960dd83-f1ee-4643-977b-e4510284b1ff" />
 
 
 
