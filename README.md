@@ -16,4 +16,4 @@ System architecture:
 
 Dbt is used to create the different tables with sql queries and schema specifications.
 
-<img width="775" height="847" alt="image" src="https://github.com/user-attachments/assets/d85ca339-1650-40a6-bb72-547b349805a1" />
+<img width="961" height="947" alt="image" src="https://github.com/user-attachments/assets/d85ca339-1650-40a6-bb72-547b349805a1" />
