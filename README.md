@@ -10,7 +10,7 @@ System architecture:
 
 ## Database schema design 
 
-- The two main tables have the following schema as example. Additionaly a star schema folder is created into a facts table and 3 dimensions tables using both these tables joined on video_id.
+- The two main tables have the following schema as example. Additionaly a star schema folder is created into a third facts table and 3 dimensions tables using both these tables joined on video_id.
 
 ![Architecture Exercises(1)](https://github.com/user-attachments/assets/f67d3577-20d2-4ce4-a44d-aaa07dbfd6d0)
 
