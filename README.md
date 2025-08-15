@@ -1,6 +1,6 @@
 # Project: Youtube trending video pipeline through dbt and bigquery data warehouse
 ## Project summary
-- This project aims to take trending video data from the youtube api https://developers.google.com/youtube/v3 and transform the data through dbt into the bigquery data warehouse. Different stages of the tables are created using medallion architechture and final analysis of succesful channels and videos is published.
+- This project aims to take trending video data from the youtube api https://developers.google.com/youtube/v3 and transform it through dbt into the bigquery data warehouse. Different stages of the tables are created using medallion architechture and final analysis of succesful channels and videos is published.
 
 System architecture:
 
