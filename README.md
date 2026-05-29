@@ -22,11 +22,11 @@ Dbt is used to create the different stages of the tables with sql queries and sc
 
 If we look at which hour of the day most videos are published we get an interesting pattern which makes sense , since humans are awake at specific times and consume media at specific times.
 
-<img width="876" height="450" alt="1" src="https://github.com/user-attachments/assets/62c0c8e7-ab26-4dd0-b193-4ae4c3c2ab1d" />
+<img width="1200" height="700" alt="1" src="https://github.com/user-attachments/assets/62c0c8e7-ab26-4dd0-b193-4ae4c3c2ab1d" />
 
 The weekend seems to be the time when larger amount of views is registered compared to other days of the week.
 
-<img width="876" height="450" alt="2" src="https://github.com/user-attachments/assets/7c4a18dc-d065-4894-9fc5-14fe7592d367" />
+<img width="1200" height="700" alt="2" src="https://github.com/user-attachments/assets/7c4a18dc-d065-4894-9fc5-14fe7592d367" />
 
 Certain countries seem to dominate the amount of views. It is expected since these are either in international languages or countries with a lot of people.
 
