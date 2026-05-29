@@ -34,12 +34,8 @@ Certain countries seem to dominate the amount of views. It is expected since the
 
 After analysing top channells with videos trending within 1 day we get their category with Entertainment the biggest one.
 
-<img width="1189" height="690" alt="Channels trending channels within 1 day" src="https://github.com/user-attachments/assets/9221f574-a499-4892-8f34-34e3faa79eb2" />
+<img width="1200" height="700" alt="7" src="https://github.com/user-attachments/assets/0df05960-1dc1-4ad9-b125-37b219f8eef1" />
 
-Most of these channels have similar amount of total views but one of them is about 5 times more than the others.
+Most common categories for videos are entertainment , sports and gaming but not true for the top channels.
 
-<img width="1189" height="690" alt="Channels trending videos within 1 day and total views" src="https://github.com/user-attachments/assets/49ce711e-981d-4984-9d44-56a59ecfd69b" />
-
-
-Most common categories for videos trending within one are entertainment , sports and gaming but not true for the top channels.
 <img width="1189" height="690" alt="Number of trending videos within 1 day and their category" src="https://github.com/user-attachments/assets/71479120-dc47-4376-8ea7-089d59d3e5ce" />
