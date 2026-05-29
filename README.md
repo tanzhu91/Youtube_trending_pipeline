@@ -36,7 +36,7 @@ After analysing top channells with videos trending within 1 day we get their cat
 
 <img width="1200" height="700" alt="7" src="https://github.com/user-attachments/assets/0df05960-1dc1-4ad9-b125-37b219f8eef1" />
 
-Most common categories for videos are entertainment , sports and gaming but not true for the top channel.
+Most common categories for trending within 1 day videos are entertainment , sports and gaming but not true for the top channel.
 
 <img width="1017" height="450" alt="8" src="https://github.com/user-attachments/assets/33ec011b-4a8f-4131-ab57-b419a4cd83bf" />
 
