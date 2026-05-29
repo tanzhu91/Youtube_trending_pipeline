@@ -24,7 +24,13 @@ If we look at which hour of the day most videos are published we get an interest
 
 <img width="876" height="450" alt="1" src="https://github.com/user-attachments/assets/62c0c8e7-ab26-4dd0-b193-4ae4c3c2ab1d" />
 
+The weekend seems to be the time when larger amount of views is registered compared to other days of the week.
 
+<img width="876" height="450" alt="2" src="https://github.com/user-attachments/assets/7c4a18dc-d065-4894-9fc5-14fe7592d367" />
+
+Certain countries seem to dominate the amount of views. It is expected since these are either in international languages or countries with a lot of people.
+
+<img width="1017" height="450" alt="5" src="https://github.com/user-attachments/assets/0b632027-8aad-4593-b9d2-d5ecbf06b916" />
 
 After analysing top channells with videos trending within 1 day we get their category with Entertainment the biggest one.
 
