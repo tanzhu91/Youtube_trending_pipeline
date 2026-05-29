@@ -20,7 +20,13 @@ Dbt is used to create the different stages of the tables with sql queries and sc
 <img width="961" height="947" alt="image" src="https://github.com/user-attachments/assets/d85ca339-1650-40a6-bb72-547b349805a1" />
 
 
-After analysing the data we get top channells with videos trending within 1 day. Their category is also visible with Entertainment being a big one.
+If we look at which hour of the day most videos are published we get an interesting pattern which makes sense , since humans are awake at specific times and consume media at specific times.
+
+<img width="876" height="450" alt="1" src="https://github.com/user-attachments/assets/62c0c8e7-ab26-4dd0-b193-4ae4c3c2ab1d" />
+
+
+
+After analysing top channells with videos trending within 1 day we get their category with Entertainment the biggest one.
 
 <img width="1189" height="690" alt="Channels trending channels within 1 day" src="https://github.com/user-attachments/assets/9221f574-a499-4892-8f34-34e3faa79eb2" />
 
