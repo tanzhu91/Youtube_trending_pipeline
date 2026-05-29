@@ -30,7 +30,7 @@ The weekend seems to be the time when larger amount of views is registered compa
 
 Certain countries seem to dominate the amount of views. It is expected since these are either in international languages or countries with a lot of people.
 
-<img width="1017" height="450" alt="5" src="https://github.com/user-attachments/assets/0b632027-8aad-4593-b9d2-d5ecbf06b916" />
+<img width="1200" height="700" alt="5" src="https://github.com/user-attachments/assets/0b632027-8aad-4593-b9d2-d5ecbf06b916" />
 
 After analysing top channells with videos trending within 1 day we get their category with Entertainment the biggest one.
 
